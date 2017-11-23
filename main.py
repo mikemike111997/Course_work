@@ -27,6 +27,8 @@ class Draw(Ui_MainWindow):
         self.connection = Connections()
         self.visualize_()
         self.connections()
+        self.left = None
+        self.right = None
 
     def visualize_(self):
         color = [QtCore.Qt.red, QtCore.Qt.green, QtCore.Qt.blue]
@@ -62,11 +64,26 @@ class Draw(Ui_MainWindow):
             print(err)
 
     def left_node(self, event):
-        print('EVENT = {}'.format(event))
+        # print('EVENT = {}'.format(event))
         X = event.x()
         Y = event.y()
-        print('\tglobal X = {} \tglobal Y = {}'.format(X, Y))
+        # print('\tglobal X = {} \tglobal Y = {}'.format(X, Y))
         print(self.graphicsView.itemAt(X, Y))
+        item = self.graphicsView.itemAt(X, Y)
+        if isinstance(item,  QtWidgets.QGraphicsEllipseItem):
+            # print(item.rect().getRect())
+            if self.left == None:
+                self.left = item
+            else:
+                self.right = item
+                x1, y1, w1, h1 = self.left.rect().getRect()
+                x2, y2, w2, h2 = self.right.rect().getRect()
+
+                pen = QtGui.QPen(QtCore.Qt.black)
+                self.scene.addLine(x1+5, y1+5, x2+5, y2+5, pen)
+                self.left = None
+                self.right = None
+                # print('x1 = {} x2 = {} y1 = {} y2 = {}'.format(x1, x2, y1, y2))
 
 if __name__ == '__main__':
     try:
