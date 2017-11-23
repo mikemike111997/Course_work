@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>900</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1200</width>
+    <height>951</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1200</width>
+     <height>900</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1200</width>
+     <height>900</height>
+    </size>
+   </property>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1211</width>
+      <height>871</height>
+     </rect>
+    </property>
+    <property name="sceneRect">
+     <rectf>
+      <x>0.000000000000000</x>
+      <y>0.000000000000000</y>
+      <width>1200.000000000000000</width>
+      <height>800.000000000000000</height>
+     </rectf>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuTOPOLOGY">
+    <property name="title">
+     <string>TOPOLOGY</string>
+    </property>
+    <addaction name="actiongenerate_random"/>
+   </widget>
+   <widget class="QMenu" name="menuSETTING">
+    <property name="title">
+     <string>SETTING</string>
+    </property>
+    <addaction name="actionconfigurations"/>
+   </widget>
+   <addaction name="menuTOPOLOGY"/>
+   <addaction name="menuSETTING"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actiongenerate_random">
+   <property name="text">
+    <string>generate random</string>
+   </property>
+  </action>
+  <action name="actionconfigurations">
+   <property name="text">
+    <string>configurations</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
