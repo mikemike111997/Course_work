@@ -1,0 +1,92 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'new_node.ui'
+#
+# Created by: PyQt5 UI code generator 5.9
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_Dialog_new_connect(QtWidgets.QDialog):
+    def setupUi(self, Dialog_new_connect):
+        Dialog_new_connect.setObjectName("Dialog_new_connect")
+        Dialog_new_connect.resize(270, 170)
+        Dialog_new_connect.setMinimumSize(QtCore.QSize(270, 170))
+        Dialog_new_connect.setMaximumSize(QtCore.QSize(298, 170))
+        self.gridLayout = QtWidgets.QGridLayout(Dialog_new_connect)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.label = QtWidgets.QLabel(Dialog_new_connect)
+        self.label.setObjectName("label")
+        self.verticalLayout_2.addWidget(self.label)
+        self.comboBox_connect_type = QtWidgets.QComboBox(Dialog_new_connect)
+        self.comboBox_connect_type.setObjectName("comboBox_connect_type")
+        self.comboBox_connect_type.addItem("")
+        self.comboBox_connect_type.addItem("")
+        self.verticalLayout_2.addWidget(self.comboBox_connect_type)
+        self.verticalLayout_4.addLayout(self.verticalLayout_2)
+        spacerItem = QtWidgets.QSpacerItem(17, 13, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_4.addItem(spacerItem)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.label_2 = QtWidgets.QLabel(Dialog_new_connect)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_3.addWidget(self.label_2)
+        self.spinBox_weight = QtWidgets.QSpinBox(Dialog_new_connect)
+        self.spinBox_weight.setMinimum(1)
+        self.spinBox_weight.setMaximum(50)
+        self.spinBox_weight.setProperty("value", 10)
+        self.spinBox_weight.setObjectName("spinBox_weight")
+        self.verticalLayout_3.addWidget(self.spinBox_weight)
+        self.verticalLayout_4.addLayout(self.verticalLayout_3)
+        self.gridLayout.addLayout(self.verticalLayout_4, 0, 0, 1, 1)
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_3 = QtWidgets.QLabel(Dialog_new_connect)
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout.addWidget(self.label_3)
+        self.lbl_node1 = QtWidgets.QLabel(Dialog_new_connect)
+        self.lbl_node1.setObjectName("lbl_node1")
+        self.horizontalLayout.addWidget(self.lbl_node1)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 17, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem1)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label_4 = QtWidgets.QLabel(Dialog_new_connect)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout_2.addWidget(self.label_4)
+        self.lbl_node2 = QtWidgets.QLabel(Dialog_new_connect)
+        self.lbl_node2.setObjectName("lbl_node2")
+        self.horizontalLayout_2.addWidget(self.lbl_node2)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 1, 1, 1)
+        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_new_connect)
+        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setObjectName("buttonBox")
+        self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
+
+        self.retranslateUi(Dialog_new_connect)
+        self.buttonBox.accepted.connect(Dialog_new_connect.accept)
+        self.buttonBox.rejected.connect(Dialog_new_connect.reject)
+        QtCore.QMetaObject.connectSlotsByName(Dialog_new_connect)
+
+    def retranslateUi(self, Dialog_new_connect):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog_new_connect.setWindowTitle(_translate("Dialog_new_connect", "New node "))
+        self.label.setText(_translate("Dialog_new_connect", "Type"))
+        self.comboBox_connect_type.setItemText(0, _translate("Dialog_new_connect", "Duplex"))
+        self.comboBox_connect_type.setItemText(1, _translate("Dialog_new_connect", "Half-duplex"))
+        self.label_2.setText(_translate("Dialog_new_connect", "Weight"))
+        self.label_3.setText(_translate("Dialog_new_connect", "Node #1 :"))
+        self.lbl_node1.setText(_translate("Dialog_new_connect", "0"))
+        self.label_4.setText(_translate("Dialog_new_connect", "Node #2 :"))
+        self.lbl_node2.setText(_translate("Dialog_new_connect", "1"))
+
