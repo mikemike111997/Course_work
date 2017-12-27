@@ -41,6 +41,10 @@ class Draw(Ui_MainWindow):
         self.history = []
         self.released = None
 
+        self.f = False
+
+        self.send_msg_btn.pressed.connect(self.send_msg)
+
     def visualize_(self):
         nodes = []
         color = [QtCore.Qt.red, QtCore.Qt.green, QtCore.Qt.blue]
@@ -62,6 +66,7 @@ class Draw(Ui_MainWindow):
 
                 X = int(x + radius * math.sin(math.radians(angle)))
                 y = int(y_centroid + radius * math.cos(math.radians(angle)))
+                # is_settlelite = random.randint()
                 nodes.append(Node(_id, area, X, y))
                 # print('Area = {} \t X = {} \t Y = {} \tangle = {} \t_id = {}'.format(area, X, y, angle, _id))
 
@@ -72,6 +77,9 @@ class Draw(Ui_MainWindow):
                 self.scene.addItem(tmp_node)
                 self.nodes_dict[tmp_node] = _id
                 self.scene.addText(str(_id)).setPos(X, y-30)
+
+        self.src_sb.setMaximum(_id)
+        self.dst_sb.setMaximum(_id)
 
         self.Connections = Connections(nodes)
 
@@ -97,6 +105,8 @@ class Draw(Ui_MainWindow):
                 self.right_node_id = self.nodes_dict[self.right]
                 if not self.Connections.connection_exists(self.left_node_id, self.right_node_id):
                     self.dl = NewConnection(self, self.left_node_id, self.right_node_id)
+                    self.f = True
+                    # print(self.dl)
                     # dl.show()
                     self.dl.accepted.connect(self.draw_line)
 
@@ -129,12 +139,16 @@ class Draw(Ui_MainWindow):
         line.setPen(pen)
         line.setZValue(-1)
 
-        if hasattr(self, 'self.dl'):
+        if self.f == True:
+
             self.tmp_width = self.dl.spinBox_weight.value()
             self.tmp_type = str(self.dl.comboBox_connect_type.currentText())
-
+            # self.tmp_width = self.dl.spinBox_weight.value()
+            # self.tmp_type = str(self.dl.comboBox_connect_type.currentText())
+            print('hasssssssssssss')
             self.tmp_type = 0 if self.tmp_type == 'Duplex' else 1
             self.Connections.add_connection(self.left_node_id, self.right_node_id,self.tmp_width, self.tmp_type)
+            self.f = False
         else:
             self.Connections.add_connection(self.left_node_id, self.right_node_id, random.randint(1, 50),
                                             random.randint(0, 1))
@@ -175,7 +189,7 @@ class Draw(Ui_MainWindow):
             self.left_node_id = self.nodes_dict[node]
             left_node = self.Connections.nodes[self.left_node_id]
             # search node to connect
-            time_out = sum(TOTAL_NODES)
+            time_out = sum(TOTAL_NODES) * 3
             while len(left_node) < 3 and time_out > 0:
                 next_node = random.randint(left_node.network_id*TOTAL_NODES[left_node.network_id],
                                            left_node.network_id*TOTAL_NODES[left_node.network_id] +
@@ -187,8 +201,22 @@ class Draw(Ui_MainWindow):
                 self.right = [elem for elem in self.nodes_dict.keys() if self.nodes_dict[elem] == next_node][0]
                 self.draw_line()
 
-
-
+    def send_msg(self):
+        src = self.src_sb.value()
+        dst = self.dst_sb.value()
+        print('src = {} dst = {}\n'.format(src, dst))
+        try:
+            send_type = 'virtual' if (self.comboBox.currentIndex()) == 0 else 'datagram'
+            print('send type = {}'.format(send_type))
+            msg = self.textEdit.toPlainText()
+            package_size = self.package_spinBox.value()
+            servise_size = self.service_spinBox.value()
+            res = self.Connections.send_data(src, dst, msg, package_size=package_size, servise_size=servise_size, _type = send_type)
+            print('res = {}'.format(res))
+            self.result_textBrowser.setPlainText(res)
+        except Exception as err:
+            print('send_msg {}'.format(err))
+            # self.result_textBrowser.setPlainText('No way!')
 
 if __name__ == '__main__':
     try:
